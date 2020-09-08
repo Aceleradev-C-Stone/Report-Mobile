@@ -1,3 +1,56 @@
 <resources>
     <string name="app_name">Report</string>
+    <string name="all_logs">Todos os logs</string>
+    <string name="new_log">Novo log</string>
+
+    <string name="show_list">Exibir logs</string>
+    <string name="out">Sair</string>
+
+    <string name="welcome">Bem-vindo!</string>
+    <string name="login_with_ur_credentials">Logue-se com as suas credenciais</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="login">Entrar</string>
+    <string name="create_new_account">Criar uma nova conta</string>
+
+    <string name="create_account">Criar uma conta</string>
+    <string name="fill_data_to_register">Insira os dados para criar uma conta</string>
+    <string name="name">Nome</string>
+    <string name="register">Cadastrar</string>
+    <string name="already_has_account">Já tem uma conta?</string>
+
+    <string name="try_again">Tente novamente</string>
+    <string name="empty">Nada por aqui :(</string>
+    <string name="end_of_list">Cabou ;)</string>
+
+    <string name="description">Descrição</string>
+    <string name="title">Título</string>
+    <string name="details">Detalhes</string>
+    <string name="source">Origem</string>
+    <string name="events">Eventos</string>
+    <string name="level">Nível</string>
+    <string name="channel">Canal</string>
+    <string name="collected_by">Coletado por</string>
+    <string name="save">Salvar</string>
+
+    <string name="debug">Debug</string>
+    <string name="warning">Alerta</string>
+    <string name="error">Erro</string>
+
+    <string name="production">Produção</string>
+    <string name="development">Desenvolvimento</string>
+
+    <string name="tools_log_description">NullPointerException in MainActivity</string>
+    <string name="tools_log_source">127.0.0.1</string>
+    <string name="tools_log_created_at">28/07/2020  23:31:24</string>
+    <string name="tools_log_title">Error: java.lang.NullPointerException</string>
+    <string name="tools_log_details">
+        main: Starting Demo1 with file name = null main:
+        Oops, general exception caught f2: finally block
+        java.lang.NullPointerException java.io.FileInputStream
+        Demo1.f2(java.lang.String) void Demo1.main(java.lang.String[])
+        Exception in thread main
+    </string>
+    <string name="tools_log_event_count">5</string>
+    <string name="tools_log_collected_by">Roberto</string>
 </resources>

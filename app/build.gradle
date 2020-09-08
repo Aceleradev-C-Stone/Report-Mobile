@@ -1,18 +1,26 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    def config = rootProject.ext;
+
+    compileSdkVersion config.compileSDK
 
     defaultConfig {
         applicationId "com.upco.report"
-        minSdkVersion 20
-        targetSdkVersion 29
+        minSdkVersion config.minSDK
+        targetSdkVersion config.targetSDK
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+
+    buildFeatures {
+        dataBinding = true
     }
 
     buildTypes {
@@ -21,17 +29,49 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    def dependencies = rootProject.ext.dependencies;
+    def dependencies = rootProject.ext.dependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    implementation project(':domain')
+    implementation project(':data')
 
     implementation dependencies.kotlin
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation dependencies.ktx
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation dependencies.appCompat
+    implementation dependencies.constraintLayout
+    implementation dependencies.cardView
+    implementation dependencies.recyclerView
+    implementation dependencies.material
 
+    implementation dependencies.viewModel
+    implementation dependencies.liveData
+    implementation dependencies.navigationFrag
+    implementation dependencies.navigationUi
+
+    implementation dependencies.rxJava
+    implementation dependencies.rxKotlin
+    implementation dependencies.rxAndroid
+
+    implementation dependencies.coroutinesCore
+    implementation dependencies.coroutinesAndroid
+
+    implementation dependencies.koin
+    implementation dependencies.koinViewModel
+
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.runner
+    androidTestImplementation testDependencies.espresso
 }

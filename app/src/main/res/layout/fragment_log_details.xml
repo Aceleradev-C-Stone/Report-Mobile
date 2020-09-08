@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import
+            alias="LogLevelExtensions"
+            type="com.upco.report.extension.LogLevelExtensionsKt" />
+        <import
+            alias="LogChannelExtensions"
+            type="com.upco.report.extension.LogChannelExtensionsKt" />
+        <variable
+            name="viewModel"
+            type="com.upco.report.feature.common.BaseViewModel" />
+        <variable
+            name="log"
+            type="com.upco.report.domain.entities.Log" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            android:textAllCaps="true"
+            android:textColor="@{ LogLevelExtensions.getIndicatorColor(log.level, context) }"
+            android:textSize="22sp"
+            android:text="@{ LogLevelExtensions.getName(log.level, context) }"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/levelIndicator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/txtChannel"
+            tools:textColor="@color/colorIndicatorDebug"
+            tools:text="@string/debug" />
+
+        <TextView
+            android:id="@+id/txtChannel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            android:textAllCaps="true"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="18sp"
+            android:text="@{ LogChannelExtensions.getName(log.channel, context) }"
+            app:layout_constraintTop_toTopOf="@id/txtLevel"
+            app:layout_constraintBottom_toBottomOf="@id/txtLevel"
+            app:layout_constraintStart_toEndOf="@id/txtLevel"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/development" />
+
+        <View
+            android:id="@+id/levelIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            android:background="@{ LogLevelExtensions.getIndicatorColor(log.level, context) }"
+            app:layout_constraintTop_toBottomOf="@id/txtLevel"
+            app:layout_constraintBottom_toTopOf="@id/lblTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:background="@color/colorIndicatorDebug" />
+
+        <TextView
+            android:id="@+id/lblTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="22sp"
+            android:text="@string/title"
+            app:layout_constraintTop_toBottomOf="@id/levelIndicator"
+            app:layout_constraintBottom_toTopOf="@id/txtTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="18sp"
+            android:text="@{ log.title }"
+            app:layout_constraintTop_toBottomOf="@id/lblTitle"
+            app:layout_constraintBottom_toTopOf="@id/lblDetails"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/tools_log_title" />
+
+        <TextView
+            android:id="@+id/lblDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="22sp"
+            android:text="@string/details"
+            app:layout_constraintTop_toBottomOf="@id/txtTitle"
+            app:layout_constraintBottom_toTopOf="@id/txtDetails"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="18sp"
+            android:text="@{ log.details }"
+            app:layout_constraintTop_toBottomOf="@id/lblDetails"
+            app:layout_constraintBottom_toTopOf="@id/lblEvents"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/tools_log_details" />
+
+        <TextView
+            android:id="@+id/lblEvents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="22sp"
+            android:text="@string/events"
+            app:layout_constraintTop_toBottomOf="@id/txtDetails"
+            app:layout_constraintBottom_toTopOf="@id/txtEvents"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/txtEvents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="18sp"
+            android:text="@{ Integer.toString(log.eventCount) }"
+            app:layout_constraintTop_toBottomOf="@id/lblEvents"
+            app:layout_constraintBottom_toTopOf="@id/lblCollectedBy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/tools_log_event_count" />
+
+        <TextView
+            android:id="@+id/lblCollectedBy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="22sp"
+            android:text="@string/collected_by"
+            app:layout_constraintTop_toBottomOf="@id/txtEvents"
+            app:layout_constraintBottom_toTopOf="@id/txtCollectedBy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/txtCollectedBy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="18sp"
+            android:text="@{ log.userName }"
+            app:layout_constraintTop_toBottomOf="@id/lblCollectedBy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/tools_log_collected_by" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

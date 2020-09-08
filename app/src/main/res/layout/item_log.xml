@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import
+            alias="DateExtensions"
+            type="com.upco.report.extension.DateExtensionsKt" />
+        <import
+            alias="LogLevelExtensions"
+            type="com.upco.report.extension.LogLevelExtensionsKt" />
+        <variable
+            name="log"
+            type="com.upco.report.domain.entities.Log" />
+        <variable
+            name="listener"
+            type="com.upco.report.feature.list.LogClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/card_margin_vertical"
+        android:layout_marginBottom="@dimen/card_margin_vertical"
+        android:layout_marginStart="@dimen/card_margin_horizontal"
+        android:layout_marginEnd="@dimen/card_margin_horizontal"
+        android:onClick="@{ () -> listener.onClick(log) }">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@{ log.description }"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/txtSource"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="@string/tools_log_description" />
+
+            <TextView
+                android:id="@+id/txtSource"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@{ log.source }"
+                app:layout_constraintTop_toBottomOf="@id/txtDescription"
+                app:layout_constraintBottom_toTopOf="@id/txtCreatedAt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="@string/tools_log_source" />
+
+            <TextView
+                android:id="@+id/txtCreatedAt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@{ DateExtensions.toFormattedString(log.createdAt) }"
+                app:layout_constraintTop_toBottomOf="@id/txtSource"
+                app:layout_constraintBottom_toTopOf="@id/levelIndicator"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="@string/tools_log_created_at" />
+
+            <View
+                android:id="@+id/levelIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@{ LogLevelExtensions.getIndicatorColor(log.level, context) }"
+                app:layout_constraintTop_toBottomOf="@id/txtCreatedAt"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:background="@color/colorIndicatorDebug" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

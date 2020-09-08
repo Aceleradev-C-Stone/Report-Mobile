@@ -2,6 +2,7 @@ package com.upco.report.domain.entities
 
 import com.upco.report.domain.enums.LogChannel
 import com.upco.report.domain.enums.LogLevel
+import java.io.Serializable
 import java.util.*
 
 data class Log(
@@ -17,4 +18,4 @@ data class Log(
     val archived: Boolean,
     val userId: Int,
     val userName: String
-)
+): Serializable
