@@ -10,3 +10,7 @@ Projeto complementar ao desafio final da aceleração de C# proporcionada pelo C
 * Room para a persistencia dos dados de forma local
 * Koin para DI
 * Material Components, que fornece componentes de UI padronizados
+
+#
+
+![Apresentação do Projeto](images/presentation.png)
